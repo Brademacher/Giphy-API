@@ -22,7 +22,7 @@ function runQuery(numImages, queryURL) {
 
         //clear well from previous run
         $("#gifs-container").empty();
-        
+
         // logging to console
         for (var i = 0; i < imageData.data.length; i++) {
             console.log("-------- GIF DATA --------")
@@ -33,14 +33,10 @@ function runQuery(numImages, queryURL) {
             console.log("active= " + imageData.data[i].images.fixed_height_downsampled.url);
 
             //Push to HTML
-            var gifDiv = $("<div>");
-            gifDiv.addClass("images")
-            gifDiv.attr("id", "gif-well-" + i);
+            var gifDiv = $("<image>");
+            gifDiv.attr("src", imageData.data[i].images.fixed_height_downsampled.url);
+            gifDiv.html(imageData.data[i].rating);
             $("#gifs-container").append(gifDiv);
-
-            // attaching content to appropriate place
-            $("#gif-well" + i).append(imageData.data[i].images.fixed_height_still.url)
-            $("#gif-well" + i).append(imageData.data[i].rating)
         };
     });
 };
