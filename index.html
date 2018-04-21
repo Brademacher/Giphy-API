@@ -1,21 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Gifs Gifs and More Gifs</title>
 </head>
+
 <body>
-    <!-- Heading -->
+    <!-- Heading and explanation of page-->
+    <h1>Your Gifs!</h1>
+
+    <p>Search any cartoon characters you'd like in the search bar. Click the buttons for any character you have created to see
+        a series of gifs!</p>
 
     <!-- Form element for user to type in request -->
-    
-    <!-- Submit button -->
+    <div class="search-container">
+        <form action="">
+            <input type="text" placeholder="Search for..." id="search">
+
+            <!-- Submit button -->
+            <button type="submit" id="search-button">Submit</button>
+            <button type="button">Clear</button>
+        </form>
+    </div>
+
 
     <!-- Container to hold buttons created -->
-
+    <div class="container" id="button-container"></div>
     <!-- Container to place gifs -->
+    <div class="container" id="gifs-container"></div>
+
+    <!-- script sources -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="./assets/JavaScript/myscripts.js"></script>
 
 </body>
+
 </html>

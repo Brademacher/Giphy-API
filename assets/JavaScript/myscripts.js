@@ -1,25 +1,66 @@
-// Global array to hold buttons created for giphy's 
+// Global array to hold buttons created for gifs 
+var topics = [];
 
-// Global variable to hold information from form (AKA user input)
+// auth key to use for API
+var authKey = "qq4zHa0rjKZREFAHd4eJOTZDIdRgr4HJ";
+
+//Set up search parameters
+var searchTerm = "";
+
+// URL Base
+var queryURLBase = "http://api.giphy.com/v1/gifs/search?api_key=" + authKey;
 
 // JS function for what to do with user input
 
-    // create button element of user request
+function runQuery(numImages, queryURL) {
 
-        // log buttons to make sure functionality is correct
+    //AJAX call to get the data from the API endpoint
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).done(function (imageData) {
 
-        // buttons should be appended to end of array of buttons (append)
-
-        // buttons created API request
-
-        // onClick of button in array will..
+        //clear well from previous run
+        $("#gifs-container").empty();
         
-            // clear previous gifs on page
-            
-            // populate page with 10 gifs
+        // logging to console
+        for (var i = 0; i < imageData.data.length; i++) {
+            console.log("-------- GIF DATA --------")
+            console.log(queryURL);
+            console.log(imageData);
+            console.log(imageData.data[i].rating);
+            console.log("still= " + imageData.data[i].images.fixed_height_still.url);
+            console.log("active= " + imageData.data[i].images.fixed_height_downsampled.url);
 
-                // include "rating", "title", and "tags" metadata
+            //Push to HTML
+            var gifDiv = $("<div>");
+            gifDiv.addClass("images")
+            gifDiv.attr("id", "gif-well-" + i);
+            $("#gifs-container").append(gifDiv);
 
-                // gifs are all stopped on population
+            // attaching content to appropriate place
+            $("#gif-well" + i).append(imageData.data[i].images.fixed_height_still.url)
+            $("#gif-well" + i).append(imageData.data[i].rating)
+        };
+    });
+};
 
-                // gifs have start/stop "on click" functionality
+
+
+//On click of the search button process
+
+$("#search-button").on("click", function (event) {
+
+    event.preventDefault();
+
+    //get term user wants to search
+    searchTerm = $("#search").val().trim();
+    console.log(searchTerm);
+
+    //add search term
+    var newURL = queryURLBase + "&q=" + searchTerm + "&limit=10";
+
+    //Send to AJAX and call new URL
+    runQuery(10, newURL);
+
+})
