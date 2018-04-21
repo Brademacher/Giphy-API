@@ -33,7 +33,7 @@ function runQuery(numImages, queryURL) {
             console.log("active= " + imageData.data[i].images.fixed_height_downsampled.url);
 
             //Push to HTML
-            var gifDiv = $("<image>");
+            var gifDiv = $("<img>");
             gifDiv.attr("src", imageData.data[i].images.fixed_height_downsampled.url);
             gifDiv.html(imageData.data[i].rating);
             $("#gifs-container").append(gifDiv);
